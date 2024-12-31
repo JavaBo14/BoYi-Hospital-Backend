@@ -5,16 +5,17 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 
 /**
- * 用户表
- * @TableName t_user
+ * 医生排班表
+ * @TableName t_schedule_info
  */
-@TableName(value ="t_user")
+@TableName(value ="t_schedule_info")
 @Data
-public class User implements Serializable {
+public class Schedule implements Serializable {
     /**
      * 主键ID
      */
@@ -22,29 +23,44 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 用户ID
-     */
-    private String userId;
-
-    /**
-     * 用户昵称
-     */
-    private String userNick;
-
-    /**
-     * 用户手机号
-     */
-    private String account;
-
-    /**
-     * 机构编码
+     * 医院编码
      */
     private String hospitalNo;
 
     /**
-     * 状态 0-停用 1-禁用
+     * 科室编码
      */
-    private Integer status;
+    private String deptCode;
+
+    /**
+     * 医生编码
+     */
+    private String doctorCode;
+
+    /**
+     * 医生姓名
+     */
+    private String doctorName;
+
+    /**
+     * 排班日期
+     */
+    private Date scheDate;
+
+    /**
+     * 排班ID
+     */
+    private String scheduleId;
+
+    /**
+     * 挂号费
+     */
+    private BigDecimal registerFee;
+
+    /**
+     * 余号数
+     */
+    private Integer surplus;
 
     /**
      * 创建时间

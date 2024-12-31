@@ -16,7 +16,7 @@ public class ResultUtils {
      * @return
      */
     public static <T> BaseResponse<T> success(T data) {
-        return new BaseResponse<>(0, data, "ok");
+        return new BaseResponse<>(200,"请求成功",data);
     }
 
     /**
@@ -37,7 +37,7 @@ public class ResultUtils {
      * @return
      */
     public static BaseResponse error(int code, String message) {
-        return new BaseResponse(code, null, message);
+        return new BaseResponse(code, message,null);
     }
 
     /**
@@ -47,6 +47,6 @@ public class ResultUtils {
      * @return
      */
     public static BaseResponse error(ErrorCode errorCode, String message) {
-        return new BaseResponse(errorCode.getCode(), null, message);
+        return new BaseResponse(errorCode.getCode(), message,null );
     }
 }

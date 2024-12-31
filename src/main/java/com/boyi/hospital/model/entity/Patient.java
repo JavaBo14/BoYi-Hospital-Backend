@@ -9,12 +9,12 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 用户表
- * @TableName t_user
+ * 患者表
+ * @TableName t_patient_info
  */
-@TableName(value ="t_user")
+@TableName(value ="t_patient_info")
 @Data
-public class User implements Serializable {
+public class Patient implements Serializable {
     /**
      * 主键ID
      */
@@ -27,19 +27,39 @@ public class User implements Serializable {
     private String userId;
 
     /**
-     * 用户昵称
+     * 患者ID
      */
-    private String userNick;
+    private String patientId;
 
     /**
-     * 用户手机号
+     * 患者姓名
      */
-    private String account;
+    private String patientName;
 
     /**
-     * 机构编码
+     * 身份证
      */
-    private String hospitalNo;
+    private String certNo;
+
+    /**
+     * 患者号
+     */
+    private String patientNo;
+
+    /**
+     * 手机号
+     */
+    private String mobile;
+
+    /**
+     * 性别，M-男 F-女
+     */
+    private String sex;
+
+    /**
+     * 年龄
+     */
+    private Integer age;
 
     /**
      * 状态 0-停用 1-禁用

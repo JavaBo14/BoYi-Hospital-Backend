@@ -3,7 +3,7 @@
 # 
 spring:
   application:
-    name: springboot-init
+    name: BoYi-Hospital-Backend
   # 默认 dev 环境
   profiles:
     active: dev
@@ -21,16 +21,16 @@ spring:
   # todo 需替换配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/my_db
+    url: jdbc:mysql://localhost:3306/jd_registration
     username: root
     password: 1014
-  # Redis 配置
-  # todo 需替换配置，然后取消注释
-#  redis:
-#    database: 1
-#    host: localhost
-#    port: 6379
-#    timeout: 5000
+#   Redis 配置
+#   todo 需替换配置，然后取消注释
+  redis:
+    database: 1
+    host: localhost
+    port: 6379
+    timeout: 5000
 #    password: 123456
   # Elasticsearch 配置
   # todo 需替换配置，然后取消注释
@@ -49,9 +49,9 @@ server:
   servlet:
     context-path: /api
     # cookie 30 天过期
-    session:
-      cookie:
-        max-age: 2592000
+#    session:
+#      cookie:
+#        max-age: 2592000
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
@@ -100,4 +100,4 @@ knife4j:
       default:
         api-rule: package
         api-rule-resources:
-          - com.yupi.springbootinit.controller
+          - com.boyi.hospital.controller

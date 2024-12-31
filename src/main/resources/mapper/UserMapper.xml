@@ -5,18 +5,19 @@
 <mapper namespace="com.boyi.hospital.mapper.UserMapper">
 
     <resultMap id="BaseResultMap" type="com.boyi.hospital.model.entity.User">
-            <id property="id" column="id" jdbcType="INTEGER"/>
+            <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="userId" column="user_id" jdbcType="VARCHAR"/>
             <result property="userNick" column="user_nick" jdbcType="VARCHAR"/>
             <result property="account" column="account" jdbcType="VARCHAR"/>
-            <result property="status" column="status" jdbcType="TINYINT"/>
-            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="hospitalNo" column="hospital_no" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,user_id,user_nick,
-        account,status,createTime,
-        updateTime
+        account,hospital_no,status,
+        create_time,update_time
     </sql>
 </mapper>

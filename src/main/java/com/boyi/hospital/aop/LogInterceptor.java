@@ -21,6 +21,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  **/
 @Aspect
 @Component
+@Deprecated
 @Slf4j
 public class LogInterceptor {
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyi.hospital.mapper.ScheNumMapper">
+
+    <resultMap id="BaseResultMap" type="com.boyi.hospital.model.entity.ScheNum">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="hospitalNo" column="hospital_no" jdbcType="VARCHAR"/>
+            <result property="deptCode" column="dept_code" jdbcType="VARCHAR"/>
+            <result property="doctorCode" column="doctor_code" jdbcType="VARCHAR"/>
+            <result property="doctorName" column="doctor_name" jdbcType="VARCHAR"/>
+            <result property="scheDate" column="sche_date" jdbcType="DATE"/>
+            <result property="scheduleId" column="schedule_id" jdbcType="VARCHAR"/>
+            <result property="scheNumId" column="sche_num_id" jdbcType="VARCHAR"/>
+            <result property="startTime" column="start_time" jdbcType="TIME"/>
+            <result property="endTime" column="end_time" jdbcType="TIME"/>
+            <result property="registerFee" column="register_fee" jdbcType="DECIMAL"/>
+            <result property="surplus" column="surplus" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,hospital_no,dept_code,
+        doctor_code,doctor_name,sche_date,
+        schedule_id,sche_num_id,start_time,
+        end_time,register_fee,surplus,
+        create_time,update_time
+    </sql>
+</mapper>

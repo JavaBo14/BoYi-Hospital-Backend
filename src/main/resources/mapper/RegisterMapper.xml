@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyi.hospital.mapper.RegisterMapper">
+
+    <resultMap id="BaseResultMap" type="com.boyi.hospital.model.entity.Register">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="hospitalNo" column="hospital_no" jdbcType="VARCHAR"/>
+            <result property="hospitalName" column="hospital_name" jdbcType="VARCHAR"/>
+            <result property="deptCode" column="dept_code" jdbcType="VARCHAR"/>
+            <result property="deptName" column="dept_name" jdbcType="VARCHAR"/>
+            <result property="doctorCode" column="doctor_code" jdbcType="VARCHAR"/>
+            <result property="doctorName" column="doctor_name" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+            <result property="patientId" column="patient_id" jdbcType="VARCHAR"/>
+            <result property="patientNo" column="patient_no" jdbcType="VARCHAR"/>
+            <result property="patientName" column="patient_name" jdbcType="VARCHAR"/>
+            <result property="registerId" column="register_id" jdbcType="VARCHAR"/>
+            <result property="scheduleId" column="schedule_id" jdbcType="VARCHAR"/>
+            <result property="scheNumId" column="sche_num_id" jdbcType="VARCHAR"/>
+            <result property="scheDate" column="sche_date" jdbcType="VARCHAR"/>
+            <result property="startTime" column="start_time" jdbcType="TIME"/>
+            <result property="endTime" column="end_time" jdbcType="TIME"/>
+            <result property="registerFee" column="register_fee" jdbcType="DECIMAL"/>
+            <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+            <result property="registerStatus" column="register_status" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,hospital_no,hospital_name,
+        dept_code,dept_name,doctor_code,
+        doctor_name,user_id,patient_id,
+        patient_no,patient_name,register_id,
+        schedule_id,sche_num_id,sche_date,
+        start_time,end_time,register_fee,
+        order_id,register_status,create_time,
+        update_time
+    </sql>
+</mapper>

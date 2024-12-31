@@ -5,16 +5,17 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 
 /**
- * 用户表
- * @TableName t_user
+ * 订单记录表
+ * @TableName t_order
  */
-@TableName(value ="t_user")
+@TableName(value ="t_order")
 @Data
-public class User implements Serializable {
+public class Order implements Serializable {
     /**
      * 主键ID
      */
@@ -22,29 +23,34 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 用户ID
+     * 订单ID
      */
-    private String userId;
+    private String orderId;
 
     /**
-     * 用户昵称
+     * 业务ID
      */
-    private String userNick;
+    private String bizId;
 
     /**
-     * 用户手机号
+     * 订单金额
      */
-    private String account;
+    private BigDecimal orderAmt;
 
     /**
-     * 机构编码
+     * 订单状态 WAIT_PAY-待支付, PA
      */
-    private String hospitalNo;
+    private String orderStatus;
 
     /**
-     * 状态 0-停用 1-禁用
+     * 支付方式 WX-微信 INSUR-医保
      */
-    private Integer status;
+    private String payType;
+
+    /**
+     * 支付时间
+     */
+    private Date orderTime;
 
     /**
      * 创建时间

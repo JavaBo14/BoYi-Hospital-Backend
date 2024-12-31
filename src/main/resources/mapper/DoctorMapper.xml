@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyi.hospital.mapper.DoctorMapper">
+
+    <resultMap id="BaseResultMap" type="com.boyi.hospital.model.entity.Doctor">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="hospitalNo" column="hospital_no" jdbcType="VARCHAR"/>
+            <result property="deptCode" column="dept_code" jdbcType="VARCHAR"/>
+            <result property="doctorCode" column="doctor_code" jdbcType="VARCHAR"/>
+            <result property="doctorName" column="doctor_name" jdbcType="VARCHAR"/>
+            <result property="avatarImg" column="avatar_img" jdbcType="VARCHAR"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="skills" column="skills" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,hospital_no,dept_code,
+        doctor_code,doctor_name,avatar_img,
+        title,skills,create_time,
+        update_time
+    </sql>
+</mapper>
