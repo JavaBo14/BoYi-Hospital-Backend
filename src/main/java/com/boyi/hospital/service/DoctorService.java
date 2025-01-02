@@ -1,7 +1,9 @@
 package com.boyi.hospital.service;
 
+import com.boyi.hospital.model.dto.doctor.DoctorQueryRequest;
 import com.boyi.hospital.model.entity.Doctor;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.boyi.hospital.model.vo.dector.DoctorDetailVO;
 
 /**
 * @author Bo
@@ -9,5 +11,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-12-31 15:07:15
 */
 public interface DoctorService extends IService<Doctor> {
+    /**
+     * 医生详情查询
+     * @param doctorQueryRequest
+     * @return
+     */
+    DoctorDetailVO doctorDetailQuery(DoctorQueryRequest doctorQueryRequest);
 
 }

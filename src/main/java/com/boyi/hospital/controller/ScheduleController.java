@@ -37,7 +37,7 @@ public class ScheduleController {
      * @return
      */
     @PostMapping("list")
-    public BaseResponse<DoctorScheduleListVO> listScheduleVO(@RequestBody ScheduleQueryRequest scheduleQueryRequest) {
+    public BaseResponse<DoctorScheduleListVO> listDoctorSchedule(@RequestBody ScheduleQueryRequest scheduleQueryRequest) {
         if (scheduleQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }

@@ -50,4 +50,21 @@
             AND s.sche_date = #{scheDate}
         </if>
     </select>
+
+    <select id="getDoctorDetail" resultType="com.boyi.hospital.model.vo.dector.DoctorDetailQuery">
+        SELECT
+            d.hospital_no AS hospitalNo,
+            d.dept_code AS deptCode,
+            d.doctor_code AS doctorCode,
+            d.doctor_name AS doctorName,
+            d.avatar_img AS avatarImg,
+            d.title AS title,
+            d.skills AS skills
+        FROM
+            t_doctor_info d
+        WHERE
+            d.hospital_no = #{hospitalNo}
+          AND d.dept_code = #{deptCode}
+          AND d.doctor_code = #{doctorCode}
+    </select>
 </mapper>

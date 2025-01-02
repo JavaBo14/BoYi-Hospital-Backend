@@ -6,6 +6,7 @@ import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.boyi.hospital.common.ErrorCode;
+import com.boyi.hospital.constant.AvatarImgConstant;
 import com.boyi.hospital.exception.BusinessException;
 import com.boyi.hospital.exception.ThrowUtils;
 import com.boyi.hospital.mapper.DeptMapper;
@@ -34,6 +35,12 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule>
     implements ScheduleService {
     @Resource private DeptMapper deptMapper;
     @Resource private DoctorMapper doctorMapper;
+
+    /**
+     * 医生排班列表查询
+     * @param scheduleQueryRequest
+     * @return
+     */
     @Override
     public DoctorScheduleListVO listDoctorSchedule(ScheduleQueryRequest scheduleQueryRequest) {
         String hospitalNo = scheduleQueryRequest.getHospitalNo();
@@ -42,22 +49,16 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule>
         // 参数校验
         ThrowUtils.throwIf(StrUtil.isBlank(hospitalNo), ErrorCode.PARAMS_ERROR, "医院编码不能为空");
         ThrowUtils.throwIf(StrUtil.isBlank(deptCode), ErrorCode.PARAMS_ERROR, "科室编码不能为空");
-        // 校验日期
-        Date today = DateUtil.beginOfDay(new Date()); // 获取今天的开始时间
-        if (Validator.isNotNull(scheDate) && scheDate.before(today)) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "调度日期不能为空");
-        }
         // 将传递的 scheDate 转换为当天的零时（00:00:00）
         Date scheDateStart = DateUtil.beginOfDay(scheDate);
+        // TODO: 2025/1/2  
         // 查询科室名称
         String deptName = deptMapper.getDeptNameByCode(deptCode);
-        if (StrUtil.isBlank(deptName)) {
-            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "无效的科室编码: " + deptCode);
-        }
+        // TODO: 2025/1/2  
         // 查询医生排班信息
         List<DoctorScheduleVO> doctorScheduleVOList = doctorMapper.getDoctorScheduleVO(hospitalNo, deptCode, scheDateStart);
         doctorScheduleVOList.forEach(doctorScheduleVO -> doctorScheduleVO.setDeptName(deptName));
-        doctorScheduleVOList.forEach(doctorScheduleVO -> doctorScheduleVO.setAvatarImg("https://s2.loli.net/2024/09/14/7zJjfsiIFlW54dM.png"));
+        doctorScheduleVOList.forEach(doctorScheduleVO -> doctorScheduleVO.setAvatarImg(AvatarImgConstant.AvatarImg));
         // 构建 DoctorScheduleListVO 对象
         DoctorScheduleListVO doctorScheduleListVO = new DoctorScheduleListVO();
         doctorScheduleListVO.setDeptCode(deptCode);

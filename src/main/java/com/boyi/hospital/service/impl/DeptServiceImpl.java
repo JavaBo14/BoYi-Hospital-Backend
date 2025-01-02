@@ -49,6 +49,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept>
         if (CollectionUtils.isEmpty(listDept)) {
             return Collections.emptyList(); // 如果没有科室，直接返回空列表
         }
+        // TODO: 2025/1/2  
         // 获取医院名称
         String hospitalName = orgMapper.getHospitalNameByNo(hospitalNo);
         // 构建科室与子科室的映射关系
@@ -84,7 +85,6 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept>
         deptListVo.setChildren(childDepts.stream()
                 .map(childDept -> buildChildDeptListVo(childDept, hospitalName, parentDeptNameMap))
                 .collect(Collectors.toList()));
-
         return deptListVo;
     }
     private ChildDeptListVO buildChildDeptListVo(Dept childDept, String hospitalName,
