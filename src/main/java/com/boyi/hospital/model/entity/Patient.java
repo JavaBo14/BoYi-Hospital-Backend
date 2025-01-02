@@ -24,26 +24,31 @@ public class Patient implements Serializable {
     /**
      * 用户ID
      */
+    @TableField("user_id")
     private String userId;
 
     /**
      * 患者ID
      */
+    @TableField("patient_id")
     private String patientId;
 
     /**
      * 患者姓名
      */
+    @TableField("patient_name")
     private String patientName;
 
     /**
      * 身份证
      */
+    @TableField("cert_no")
     private String certNo;
 
     /**
      * 患者号
      */
+    @TableField("patient_no")
     private String patientNo;
 
     /**
@@ -69,11 +74,13 @@ public class Patient implements Serializable {
     /**
      * 创建时间
      */
+    @TableField("create_time")
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @TableField("update_time")
     private Date updateTime;
 
     @TableField(exist = false)

@@ -24,11 +24,13 @@ public class Org implements Serializable {
     /**
      * 医院编码
      */
+    @TableField("hospital_no")
     private String hospitalNo;
 
     /**
      * 医院名称
      */
+    @TableField("hospital_name")
     private String hospitalName;
 
     /**
@@ -54,16 +56,19 @@ public class Org implements Serializable {
     /**
      * 小程序APPID
      */
+    @TableField("app_id")
     private String appId;
 
     /**
      * 创建时间
      */
+    @TableField("create_time")
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @TableField("update_time")
     private Date updateTime;
 
     @TableField(exist = false)

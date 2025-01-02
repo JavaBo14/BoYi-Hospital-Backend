@@ -24,26 +24,31 @@ public class Doctor implements Serializable {
     /**
      * 医院编码
      */
+    @TableField("hospital_no")
     private String hospitalNo;
 
     /**
      * 科室编码
      */
+    @TableField("dept_code")
     private String deptCode;
 
     /**
      * 医生编码
      */
+    @TableField("doctor_code")
     private String doctorCode;
 
     /**
      * 医生姓名
      */
+    @TableField("doctor_name")
     private String doctorName;
 
     /**
      * 医生头像
      */
+    @TableField("avatar_img")
     private String avatarImg;
 
     /**
@@ -59,11 +64,13 @@ public class Doctor implements Serializable {
     /**
      * 创建时间
      */
+    @TableField("create_time")
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @TableField("update_name")
     private Date updateTime;
 
     @TableField(exist = false)

@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class MobileDTO implements Serializable {
+public class MobileRequest implements Serializable {
     /**
      * 手机号
      */

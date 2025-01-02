@@ -24,11 +24,13 @@ public class User implements Serializable {
     /**
      * 用户ID
      */
+    @TableField("user_id")  // 显式映射
     private String userId;
 
     /**
      * 用户昵称
      */
+    @TableField("user_nick")  // 显式映射
     private String userNick;
 
     /**
@@ -39,6 +41,7 @@ public class User implements Serializable {
     /**
      * 机构编码
      */
+    @TableField("hospital_no")  // 显式映射
     private String hospitalNo;
 
     /**
@@ -49,11 +52,13 @@ public class User implements Serializable {
     /**
      * 创建时间
      */
+    @TableField("create_time")  // 显式映射
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @TableField("update_time")  // 显式映射
     private Date updateTime;
 
     @TableField(exist = false)

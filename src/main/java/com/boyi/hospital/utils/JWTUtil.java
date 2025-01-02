@@ -24,7 +24,7 @@ public class JWTUtil {
     /**
     * 加密的秘钥
     */
-    private static final String SECRET = "bo";
+    private static final String SECRET = "aR8#hV9d!Wz2$k5JpR5fFf7Yr2XzTg6iLq9uT#P+uVYk5C";
     
     /**
     * 令牌前缀
@@ -48,13 +48,15 @@ public class JWTUtil {
         }
         
         String token = Jwts.builder().setSubject(SUBJECT)
-            //payload
-            .claim("user_nick", user.getUserNick())
-            .claim("user_id", user.getUserId())
-            .claim("account", user.getAccount())
-            .setIssuedAt(new Date())
-            .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
-            .signWith(SignatureAlgorithm.HS256, SECRET).compact();
+                //payload
+                .claim("user_nick", user.getUserNick())
+                .claim("user_id", user.getUserId())
+                .claim("account", user.getAccount())
+                .claim("hospital_no", user.getHospitalNo())
+                .claim("status", user.getStatus())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
+                .signWith(SignatureAlgorithm.HS256, SECRET).compact();
         
         token = TOKEN_PREFIX + token;
         return token;

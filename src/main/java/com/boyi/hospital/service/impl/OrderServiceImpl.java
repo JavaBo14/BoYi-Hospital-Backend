@@ -2,8 +2,8 @@ package com.boyi.hospital.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.boyi.hospital.model.entity.Order;
-import generator.service.OrderService;
 import com.boyi.hospital.mapper.OrderMapper;
+import com.boyi.hospital.service.OrderService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
-    implements OrderService{
+    implements OrderService {
 
 }
 

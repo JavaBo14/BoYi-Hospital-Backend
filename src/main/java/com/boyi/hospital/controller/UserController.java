@@ -1,13 +1,17 @@
 package com.boyi.hospital.controller;
 
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.boyi.hospital.common.BaseResponse;
 import com.boyi.hospital.common.ErrorCode;
 import com.boyi.hospital.common.ResultUtils;
 import com.boyi.hospital.exception.BusinessException;
-import com.boyi.hospital.model.dto.mobile.MobileDTO;
+import com.boyi.hospital.model.dto.mobile.MobileRequest;
 import com.boyi.hospital.model.entity.User;
+import com.boyi.hospital.model.enums.UserStatusEnum;
+import com.boyi.hospital.model.vo.CodeLoginVo;
+import com.boyi.hospital.model.vo.CodeVo;
 import com.boyi.hospital.service.UserService;
 import com.boyi.hospital.utils.JWTUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -41,12 +45,12 @@ public class UserController {
     /**
      * 获取手机验证码
      *
-     * @param mobileDTO
+     * @param mobileRequest
      * @return
      */
     @PostMapping("code")
-    public BaseResponse<String> getPhoneCode(@RequestBody MobileDTO mobileDTO) {
-        String mobile = mobileDTO.getMobile();
+    public BaseResponse<CodeVo> getPhoneCode(@RequestBody MobileRequest mobileRequest) {
+        String mobile = mobileRequest.getMobile();
         // 验证手机号格式
         if (StrUtil.isBlank(mobile) || !mobile.matches("^1[3-9]\\d{9}$")) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "手机号格式不正确");
@@ -54,6 +58,8 @@ public class UserController {
         // TODO: 2024/12/31
         SecureRandom random = new SecureRandom();
         String code = String.format("%06d", random.nextInt(1000000));
+        CodeVo codeVo=new CodeVo();
+        codeVo.setCode(code);
         // 存储验证码
         String verificationCodeKey = "VERIFICATION_CODE:" + mobile;
         try {
@@ -66,18 +72,18 @@ public class UserController {
             log.error("存储验证码时发生未知错误", e);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "系统繁忙，请稍后再试");
         }
-        return ResultUtils.success(code);
+        return ResultUtils.success(codeVo);
     }
 
     /**
      * 用户登录
-     * @param mobileDTO
+     * @param mobileRequest
      * @return
      */
     @PostMapping("login")
-    public BaseResponse<String> phoneCodeLogin(@RequestBody MobileDTO mobileDTO) {
-        String mobile = mobileDTO.getMobile();
-        String code = mobileDTO.getCode();
+    public BaseResponse<CodeLoginVo> phoneCodeLogin(@RequestBody MobileRequest mobileRequest) {
+        String mobile = mobileRequest.getMobile();
+        String code = mobileRequest.getCode();
         // 验证手机号格式
         if (StrUtil.isBlank(mobile) || !mobile.matches("^1[3-9]\\d{9}$")) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "手机号格式不正确");
@@ -99,16 +105,22 @@ public class UserController {
         // 如果用户不存在，自动注册新用户
         if (user == null) {
             user = new User();
+            user.setUserId(IdUtil.simpleUUID());
             user.setAccount(mobile);
+            user.setStatus(UserStatusEnum.START.getValue());
+            // TODO: 2024/12/31 机构编码 
+            user.setHospitalNo(IdUtil.simpleUUID());
             user.setUserNick("用户" + mobile.substring(mobile.length() - 4));  // 可以根据手机号生成昵称
             userService.save(user);  // 保存用户到数据库
         }
         // 生成 JWT 登录凭证
         String token = JWTUtil.geneJsonWebToken(user);
+        CodeLoginVo codeLoginVo = new CodeLoginVo();
+        codeLoginVo.setAccessToken(token);
         // 登录成功后，清除 Redis 中的验证码
         redisTemplate.delete(redisKey);
         // 返回成功响应，包含生成的 JWT Token
-        return ResultUtils.success(token);
+        return ResultUtils.success(codeLoginVo);
     }
 
 }

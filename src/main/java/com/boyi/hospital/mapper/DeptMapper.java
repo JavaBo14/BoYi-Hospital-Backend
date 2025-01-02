@@ -2,6 +2,7 @@ package com.boyi.hospital.mapper;
 
 import com.boyi.hospital.model.entity.Dept;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
 * @author Bo
@@ -10,6 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity generator.domain.Dept
 */
 public interface DeptMapper extends BaseMapper<Dept> {
+
 
 }
 

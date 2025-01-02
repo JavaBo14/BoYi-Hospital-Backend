@@ -6,44 +6,44 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.ObjectUtils;
 
 /**
- * 用户状态枚举
+ * 支付方式枚举类
  *
  * @author <a href="https://github.com/JavaBo14">Bo</a>
  *
  */
-public enum UserStatusEnum {
+public enum PayTypeEnum {
 
-    STOPPED("停用", 0),
-    START("启用", 1);
+    WEIXIN("微信", "WX"),
+    MEDICAL_INSURANCE("医保", "INSUR");
 
     private final String text;
-    private final Integer value;
+    private final String value;
 
-    UserStatusEnum(String text, Integer value) {
+    PayTypeEnum(String text, String value) {
         this.text = text;
         this.value = value;
     }
 
     /**
-     * 获取所有状态值的列表
+     * 获取所有支付方式值的列表
      *
-     * @return Integer 类型的状态值列表
+     * @return String 类型的支付方式值列表
      */
-    public static List<Integer> getValues() {
-        return Arrays.stream(values()).map(UserStatusEnum::getValue).collect(Collectors.toList());
+    public static List<String> getValues() {
+        return Arrays.stream(values()).map(PayTypeEnum::getValue).collect(Collectors.toList());
     }
 
     /**
      * 根据 value 获取枚举
      *
-     * @param value Integer 类型的状态值
+     * @param value String 类型的支付方式值
      * @return 对应的枚举
      */
-    public static UserStatusEnum getEnumByValue(Integer value) {
+    public static PayTypeEnum getEnumByValue(String value) {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }
-        for (UserStatusEnum anEnum : UserStatusEnum.values()) {
+        for (PayTypeEnum anEnum : PayTypeEnum.values()) {
             if (anEnum.value.equals(value)) {
                 return anEnum;
             }
@@ -54,14 +54,14 @@ public enum UserStatusEnum {
     /**
      * 根据 text 获取枚举
      *
-     * @param text String 类型的状态文本
+     * @param text String 类型的支付方式文本
      * @return 对应的枚举
      */
-    public static UserStatusEnum getEnumByText(String text) {
+    public static PayTypeEnum getEnumByText(String text) {
         if (ObjectUtils.isEmpty(text)) {
             return null;
         }
-        for (UserStatusEnum anEnum : UserStatusEnum.values()) {
+        for (PayTypeEnum anEnum : PayTypeEnum.values()) {
             if (anEnum.text.equals(text)) {
                 return anEnum;
             }
@@ -69,7 +69,7 @@ public enum UserStatusEnum {
         return null;
     }
 
-    public Integer getValue() {
+    public String getValue() {
         return value;
     }
 

@@ -1,7 +1,11 @@
 package com.boyi.hospital.service;
 
+import com.boyi.hospital.model.dto.mobile.DeptQueryRequest;
 import com.boyi.hospital.model.entity.Dept;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.boyi.hospital.model.vo.DeptListVo;
+
+import java.util.List;
 
 /**
 * @author Bo
@@ -9,5 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-12-31 15:06:27
 */
 public interface DeptService extends IService<Dept> {
+
+    List<DeptListVo> listDeptVO(DeptQueryRequest deptQueryRequest);
 
 }
