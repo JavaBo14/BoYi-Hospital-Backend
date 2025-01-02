@@ -1,4 +1,4 @@
-package com.boyi.hospital.model.vo;
+package com.boyi.hospital.model.vo.user;
 
 import lombok.Data;
 

@@ -1,9 +1,9 @@
 package com.boyi.hospital.service;
 
-import com.boyi.hospital.model.dto.mobile.DeptQueryRequest;
+import com.boyi.hospital.model.dto.dept.DeptQueryRequest;
 import com.boyi.hospital.model.entity.Dept;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.boyi.hospital.model.vo.DeptListVo;
+import com.boyi.hospital.model.vo.dept.DeptListVO;
 
 import java.util.List;
 
@@ -14,6 +14,11 @@ import java.util.List;
 */
 public interface DeptService extends IService<Dept> {
 
-    List<DeptListVo> listDeptVO(DeptQueryRequest deptQueryRequest);
+    /**
+     * 科室列表查询
+     * @param deptQueryRequest
+     * @return
+     */
+    List<DeptListVO> listDeptVO(DeptQueryRequest deptQueryRequest);
 
 }

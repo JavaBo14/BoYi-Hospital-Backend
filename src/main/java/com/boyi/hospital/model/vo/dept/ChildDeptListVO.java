@@ -1,19 +1,12 @@
-package com.boyi.hospital.model.vo;
+package com.boyi.hospital.model.vo.dept;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.boyi.hospital.model.entity.Dept;
 import lombok.Data;
-import org.apache.poi.poifs.property.Child;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 
 @Data
-public class DeptListVo implements Serializable {
+public class ChildDeptListVO implements Serializable {
 
 
     /**
@@ -51,8 +44,4 @@ public class DeptListVo implements Serializable {
      */
     private String address;
 
-    /**
-     *子科室列表
-     */
-    private List<ChildDeptListVo> childList;
 }

@@ -7,10 +7,10 @@ import com.boyi.hospital.common.ErrorCode;
 import com.boyi.hospital.exception.BusinessException;
 import com.boyi.hospital.mapper.DeptMapper;
 import com.boyi.hospital.mapper.OrgMapper;
-import com.boyi.hospital.model.dto.mobile.DeptQueryRequest;
+import com.boyi.hospital.model.dto.dept.DeptQueryRequest;
 import com.boyi.hospital.model.entity.Dept;
-import com.boyi.hospital.model.vo.ChildDeptListVo;
-import com.boyi.hospital.model.vo.DeptListVo;
+import com.boyi.hospital.model.vo.dept.ChildDeptListVO;
+import com.boyi.hospital.model.vo.dept.DeptListVO;
 import com.boyi.hospital.service.DeptService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -33,8 +33,13 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept>
     @Resource
     private OrgMapper orgMapper;
 
+    /**
+     * 科室列表查询
+     * @param deptQueryRequest
+     * @return
+     */
     @Override
-    public List<DeptListVo> listDeptVO(DeptQueryRequest deptQueryRequest) {
+    public List<DeptListVO> listDeptVO(DeptQueryRequest deptQueryRequest) {
         String hospitalNo = deptQueryRequest.getHospitalNo();
         if (StrUtil.isBlank(hospitalNo)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "请求参数为空");
@@ -63,10 +68,10 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept>
                 .map(dept -> buildDeptListVo(dept, hospitalName, parentDeptNameMap, deptTreeMap))
                 .collect(Collectors.toList());
     }
-    private DeptListVo buildDeptListVo(Dept dept, String hospitalName,
+    private DeptListVO buildDeptListVo(Dept dept, String hospitalName,
                                        Map<String, String> parentDeptNameMap,
                                        Map<String, List<Dept>> deptTreeMap) {
-        DeptListVo deptListVo = new DeptListVo();
+        DeptListVO deptListVo = new DeptListVO();
         deptListVo.setHospitalNo(dept.getHospitalNo());
         deptListVo.setHospitalName(hospitalName);
         deptListVo.setDeptCode(dept.getDeptCode());
@@ -76,15 +81,15 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept>
         deptListVo.setAddress(dept.getAddress());
         // 获取子科室
         List<Dept> childDepts = deptTreeMap.getOrDefault(dept.getDeptCode(), Collections.emptyList());
-        deptListVo.setChildList(childDepts.stream()
+        deptListVo.setChildren(childDepts.stream()
                 .map(childDept -> buildChildDeptListVo(childDept, hospitalName, parentDeptNameMap))
                 .collect(Collectors.toList()));
 
         return deptListVo;
     }
-    private ChildDeptListVo buildChildDeptListVo(Dept childDept, String hospitalName,
+    private ChildDeptListVO buildChildDeptListVo(Dept childDept, String hospitalName,
                                                  Map<String, String> parentDeptNameMap) {
-        ChildDeptListVo childDeptListVo = new ChildDeptListVo();
+        ChildDeptListVO childDeptListVo = new ChildDeptListVO();
         childDeptListVo.setHospitalNo(childDept.getHospitalNo());
         childDeptListVo.setHospitalName(hospitalName);
         childDeptListVo.setDeptCode(childDept.getDeptCode());

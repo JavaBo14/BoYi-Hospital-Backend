@@ -2,6 +2,7 @@ package com.boyi.hospital.mapper;
 
 import com.boyi.hospital.model.entity.Org;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -13,7 +14,7 @@ import org.apache.ibatis.annotations.Select;
 public interface OrgMapper extends BaseMapper<Org> {
 
     @Select("SELECT hospital_name FROM t_org_info WHERE hospital_no = #{hospitalNo}")
-    String getHospitalNameByNo(String hospitalNo);
+    String getHospitalNameByNo(@Param("hospitalNo")String hospitalNo);
 }
 
 

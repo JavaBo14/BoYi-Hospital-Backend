@@ -2,6 +2,7 @@ package com.boyi.hospital.mapper;
 
 import com.boyi.hospital.model.entity.Dept;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -12,6 +13,8 @@ import org.apache.ibatis.annotations.Select;
 */
 public interface DeptMapper extends BaseMapper<Dept> {
 
+    @Select("SELECT dept_name FROM t_dept_info WHERE dept_code = #{deptCode}")
+    String getDeptNameByCode(@Param("deptCode") String deptCode);
 
 }
 

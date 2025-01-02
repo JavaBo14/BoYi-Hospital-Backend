@@ -2,6 +2,11 @@ package com.boyi.hospital.mapper;
 
 import com.boyi.hospital.model.entity.Doctor;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.boyi.hospital.model.vo.schedule.DoctorScheduleVO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
+import java.util.List;
 
 /**
 * @author Bo
@@ -11,6 +16,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface DoctorMapper extends BaseMapper<Doctor> {
 
+    List<DoctorScheduleVO> getDoctorScheduleVO(@Param("hospitalNo") String hospitalNo, @Param("deptCode") String deptCode,@Param("scheDate") Date scheDate);
 }
 
 

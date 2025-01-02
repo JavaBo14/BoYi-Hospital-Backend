@@ -1,8 +1,9 @@
-package com.boyi.hospital.model.vo;
+package com.boyi.hospital.model.vo.user;
 
 import lombok.Data;
 
 import java.io.Serializable;
+
 @Data
 public class CodeLoginVo implements Serializable {
     /**

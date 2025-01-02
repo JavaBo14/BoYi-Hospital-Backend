@@ -1,12 +1,13 @@
-package com.boyi.hospital.model.vo;
+package com.boyi.hospital.model.vo.dept;
 
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Data
-public class ChildDeptListVo implements Serializable {
+public class DeptListVO implements Serializable {
 
 
     /**
@@ -44,4 +45,8 @@ public class ChildDeptListVo implements Serializable {
      */
     private String address;
 
+    /**
+     *子科室列表
+     */
+    private List<ChildDeptListVO> children;
 }

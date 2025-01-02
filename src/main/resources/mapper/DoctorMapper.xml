@@ -23,4 +23,31 @@
         title,skills,create_time,
         update_time
     </sql>
+    <select id="getDoctorScheduleVO" resultType="com.boyi.hospital.model.vo.schedule.DoctorScheduleVO">
+        SELECT
+        d.hospital_no AS hospitalNo,
+        d.dept_code AS deptCode,
+        d.doctor_code AS doctorCode,
+        d.doctor_name AS doctorName,
+        d.avatar_img AS avatarImg,
+        d.title AS title,
+        d.skills AS skills,
+        s.surplus AS surplus,
+        s.register_fee AS registerFee,
+        s.schedule_id AS scheduleId
+        FROM
+        t_doctor_info d
+        JOIN
+        t_schedule_info s
+        ON
+        d.hospital_no = s.hospital_no
+        AND d.dept_code = s.dept_code
+        AND d.doctor_code = s.doctor_code
+        WHERE
+        s.dept_code = #{deptCode}
+        AND s.hospital_no = #{hospitalNo}
+        <if test="scheDate!= null">
+            AND s.sche_date = #{scheDate}
+        </if>
+    </select>
 </mapper>

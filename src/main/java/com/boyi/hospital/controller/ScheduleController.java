@@ -5,8 +5,10 @@ import com.boyi.hospital.common.ErrorCode;
 import com.boyi.hospital.common.ResultUtils;
 import com.boyi.hospital.exception.BusinessException;
 import com.boyi.hospital.model.dto.dept.DeptQueryRequest;
+import com.boyi.hospital.model.dto.schdule.ScheduleQueryRequest;
 import com.boyi.hospital.model.vo.dept.DeptListVO;
-import com.boyi.hospital.service.DeptService;
+import com.boyi.hospital.model.vo.schedule.DoctorScheduleListVO;
+import com.boyi.hospital.service.ScheduleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,24 +24,24 @@ import java.util.List;
  * @author <a href="https://github.com/JavaBo14">Bo</a>
  */
 @RestController
-@RequestMapping("v1/dept")
+@RequestMapping("v1/register/schedule")
 @Slf4j
-public class DeptController {
+public class ScheduleController {
 
     @Resource
-    private DeptService deptService;
+    private ScheduleService scheduleService;
 
     /**
-     * 科室列表查询
-     * @param deptQueryRequest
+     * 医生排班列表查询接口
+     * @param scheduleQueryRequest
      * @return
      */
     @PostMapping("list")
-    public BaseResponse<List<DeptListVO>> listDeptVO(@RequestBody DeptQueryRequest deptQueryRequest) {
-        if (deptQueryRequest == null) {
+    public BaseResponse<DoctorScheduleListVO> listScheduleVO(@RequestBody ScheduleQueryRequest scheduleQueryRequest) {
+        if (scheduleQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        List<DeptListVO> deptListVo = deptService.listDeptVO(deptQueryRequest);
-        return ResultUtils.success(deptListVo);
+        DoctorScheduleListVO doctorScheduleListVO = scheduleService.listDoctorSchedule(scheduleQueryRequest);
+        return ResultUtils.success(doctorScheduleListVO);
     }
 }

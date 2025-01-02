@@ -1,4 +1,4 @@
-package com.boyi.hospital.model.dto.mobile;
+package com.boyi.hospital.model.dto.dept;
 
 import lombok.Data;
 
