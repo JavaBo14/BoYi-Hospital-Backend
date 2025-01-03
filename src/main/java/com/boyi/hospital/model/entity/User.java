@@ -39,6 +39,18 @@ public class User implements Serializable {
     private String account;
 
     /**
+     * 就诊号条形码
+     */
+    @TableField("bar_code")  // 显式映射
+    private String barCode;
+
+    /**
+     * 就诊号二维码
+     */
+    @TableField("qr_code")  // 显式映射
+    private String qrCode;
+
+    /**
      * 机构编码
      */
     @TableField("hospital_no")  // 显式映射

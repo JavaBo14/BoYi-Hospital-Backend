@@ -49,6 +49,13 @@ CREATE TABLE IF NOT EXISTS t_user
     create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
 ) COMMENT '用户表' COLLATE = utf8mb4_unicode_ci;
+-- 添加barCode字段
+ALTER TABLE t_user
+    ADD COLUMN bar_code VARCHAR(256) AFTER hospital_no;
+
+-- 添加qrCode字段
+ALTER TABLE t_user
+    ADD COLUMN qr_code VARCHAR(256) AFTER bar_code;
 
 
 -- 患者表
@@ -60,6 +67,7 @@ CREATE TABLE IF NOT EXISTS t_patient_info
     patient_name VARCHAR(32)                         NOT NULL COMMENT '患者姓名',
     cert_no      VARCHAR(18)                         NOT NULL COMMENT '身份证',
     patient_no   VARCHAR(10)                         NOT NULL COMMENT '患者号',
+    address      VARCHAR(255)                                 COMMENT '患者地址',
     mobile       VARCHAR(11)                         NOT NULL COMMENT '手机号',
     sex          CHAR(1)                             NOT NULL COMMENT '性别，M-男 F-女',
     age          INT COMMENT '年龄',
@@ -67,6 +75,10 @@ CREATE TABLE IF NOT EXISTS t_patient_info
     create_time  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     update_time  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
 ) COMMENT '患者表' COLLATE = utf8mb4_unicode_ci;
+
+ALTER TABLE t_patient_info
+    ADD COLUMN address VARCHAR(255) COMMENT '患者地址';
+
 
 
 -- 医生表

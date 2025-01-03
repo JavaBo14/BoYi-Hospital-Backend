@@ -1,7 +1,9 @@
 package com.boyi.hospital.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.boyi.hospital.model.dto.order.OrderRequest;
 import com.boyi.hospital.model.entity.Order;
+import com.boyi.hospital.model.vo.order.OrderVO;
 
 /**
 * @author Bo
@@ -9,5 +11,13 @@ import com.boyi.hospital.model.entity.Order;
 * @createDate 2024-12-31 14:59:59
 */
 public interface OrderService extends IService<Order> {
+
+    /**
+     * 挂号支付
+     * @param orderRequest
+     * @return
+     */
+
+    OrderVO registerPay(OrderRequest orderRequest);
 
 }

@@ -5,24 +5,48 @@
 <mapper namespace="com.boyi.hospital.mapper.PatientMapper">
 
     <resultMap id="BaseResultMap" type="com.boyi.hospital.model.entity.Patient">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="userId" column="user_id" jdbcType="VARCHAR"/>
-            <result property="patientId" column="patient_id" jdbcType="VARCHAR"/>
-            <result property="patientName" column="patient_name" jdbcType="VARCHAR"/>
-            <result property="certNo" column="cert_no" jdbcType="VARCHAR"/>
-            <result property="patientNo" column="patient_no" jdbcType="VARCHAR"/>
-            <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
-            <result property="sex" column="sex" jdbcType="CHAR"/>
-            <result property="age" column="age" jdbcType="INTEGER"/>
-            <result property="status" column="status" jdbcType="INTEGER"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="patientId" column="patient_id" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="patientName" column="patient_name" jdbcType="VARCHAR"/>
+        <result property="certNo" column="cert_no" jdbcType="VARCHAR"/>
+        <result property="patientNo" column="patient_no" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="CHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,user_id,patient_id,
+        id
+        ,user_id,patient_id,
         patient_name,cert_no,patient_no,
-        mobile,sex,age,
+        mobile,sex,age,address,
         status,create_time,update_time
     </sql>
+
+    <select id="getPatientDetail"  resultType="com.boyi.hospital.model.vo.Patient.PatientDetailVO">
+        SELECT
+            p.patient_id AS patientId,
+            p.patient_name AS patientName,
+            p.patient_no AS patientNo,
+            p.cert_no AS certNo,
+            p.address AS address,
+            u.bar_code AS barCode,
+            u.qr_code AS qrCode
+        FROM
+            t_patient_info p
+                LEFT JOIN
+            t_user u
+            ON
+                p.user_id = u.user_id
+        WHERE
+            p.patient_id = #{patientId}
+          AND
+            u.hospital_no = #{hospitalNo}
+    </select>
+
 </mapper>

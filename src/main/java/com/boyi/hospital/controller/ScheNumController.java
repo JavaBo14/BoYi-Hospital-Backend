@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+/**
+ * 医生号源接口
+ */
 @RestController
 @RequestMapping("v1/register/scheNum")
 @Slf4j

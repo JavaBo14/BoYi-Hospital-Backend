@@ -4,9 +4,9 @@ import com.boyi.hospital.common.BaseResponse;
 import com.boyi.hospital.common.ErrorCode;
 import com.boyi.hospital.common.ResultUtils;
 import com.boyi.hospital.exception.BusinessException;
-import com.boyi.hospital.model.dto.doctor.DoctorQueryRequest;
-import com.boyi.hospital.model.vo.dector.DoctorDetailVO;
-import com.boyi.hospital.service.DoctorService;
+import com.boyi.hospital.model.dto.register.RegisterRequest;
+import com.boyi.hospital.model.vo.register.RegisterVo;
+import com.boyi.hospital.service.RegisterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,29 +16,30 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * 医生接口
+ * 预约接口
  *
  * @author <a href="https://github.com/JavaBo14">Bo</a>
  */
 @RestController
-@RequestMapping("v1/doctor")
+@RequestMapping("v1/register")
 @Slf4j
-public class DoctorController {
+public class RegisterController {
 
      @Resource
-     private DoctorService doctorService;
-
+     private RegisterService registerService;
     /**
-     * 医生详情查询
-     * @param doctorQueryRequest
+     * 挂号预约接口
+     *
+     * @param registerRequest
      * @return
      */
-    @PostMapping("detail")
-    public BaseResponse<DoctorDetailVO> doctorDetailQuery(@RequestBody DoctorQueryRequest doctorQueryRequest) {
-        if (doctorQueryRequest == null) {
+    @PostMapping("appoint")
+    public BaseResponse<RegisterVo> registerBooking(@RequestBody RegisterRequest registerRequest) {
+        // 1. 参数验证
+        if (registerRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        DoctorDetailVO doctorDetailVO = doctorService.doctorDetailQuery(doctorQueryRequest);
-        return ResultUtils.success(doctorDetailVO);
+        RegisterVo registerVo = registerService.registerBooking(registerRequest);
+        return ResultUtils.success(registerVo);
     }
 }

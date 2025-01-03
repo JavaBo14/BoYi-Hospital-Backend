@@ -1,11 +1,11 @@
-package com.boyi.hospital.model.vo;
+package com.boyi.hospital.model.vo.Patient;
 
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
-public class PatientVO implements Serializable {
+public class PatientInformationVO implements Serializable {
 
     /**
      * 患者ID

@@ -34,6 +34,11 @@ public class Patient implements Serializable {
     private String patientId;
 
     /**
+     * 患者地址
+     */
+    private String address;
+
+    /**
      * 患者姓名
      */
     @TableField("patient_name")
