@@ -1,7 +1,9 @@
 package com.boyi.hospital.service;
 
+import com.boyi.hospital.model.dto.schnum.SchNumQueryRequest;
 import com.boyi.hospital.model.entity.ScheNum;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.boyi.hospital.model.vo.schenum.DoctorScheNumListVO;
 
 /**
 * @author Bo
@@ -9,5 +11,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-12-31 15:10:57
 */
 public interface ScheNumService extends IService<ScheNum> {
+
+    /**
+     * 医生号源列表查询
+     * @param scheduleQueryRequest
+     * @return
+     */
+    DoctorScheNumListVO doctorScheNumList(SchNumQueryRequest scheduleQueryRequest);
 
 }

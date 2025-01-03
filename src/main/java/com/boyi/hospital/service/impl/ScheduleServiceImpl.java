@@ -12,13 +12,16 @@ import com.boyi.hospital.exception.ThrowUtils;
 import com.boyi.hospital.mapper.DeptMapper;
 import com.boyi.hospital.mapper.DoctorMapper;
 import com.boyi.hospital.model.dto.schdule.ScheduleQueryRequest;
+import com.boyi.hospital.model.dto.schnum.SchNumQueryRequest;
 import com.boyi.hospital.model.entity.Doctor;
 import com.boyi.hospital.model.entity.Schedule;
 import com.boyi.hospital.model.vo.schedule.DoctorScheduleListVO;
 import com.boyi.hospital.model.vo.schedule.DoctorScheduleVO;
+import com.boyi.hospital.model.vo.schenum.DoctorScheNumListVO;
 import com.boyi.hospital.service.ScheduleService;
 import com.boyi.hospital.mapper.ScheduleMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -57,6 +60,10 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule>
         // TODO: 2025/1/2  
         // 查询医生排班信息
         List<DoctorScheduleVO> doctorScheduleVOList = doctorMapper.getDoctorScheduleVO(hospitalNo, deptCode, scheDateStart);
+        // 如果没有数据，返回空列表
+        if (CollectionUtils.isEmpty(doctorScheduleVOList)) {
+            return new DoctorScheduleListVO();
+        }
         doctorScheduleVOList.forEach(doctorScheduleVO -> doctorScheduleVO.setDeptName(deptName));
         doctorScheduleVOList.forEach(doctorScheduleVO -> doctorScheduleVO.setAvatarImg(AvatarImgConstant.AvatarImg));
         // 构建 DoctorScheduleListVO 对象

@@ -1,9 +1,11 @@
 package com.boyi.hospital.service;
 
 import com.boyi.hospital.model.dto.schdule.ScheduleQueryRequest;
+import com.boyi.hospital.model.dto.schnum.SchNumQueryRequest;
 import com.boyi.hospital.model.entity.Schedule;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.boyi.hospital.model.vo.schedule.DoctorScheduleListVO;
+import com.boyi.hospital.model.vo.schenum.DoctorScheNumListVO;
 
 import java.util.List;
 

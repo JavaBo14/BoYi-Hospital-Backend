@@ -2,6 +2,10 @@ package com.boyi.hospital.mapper;
 
 import com.boyi.hospital.model.entity.ScheNum;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.boyi.hospital.model.vo.schenum.DoctorScheNumVO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @author Bo
@@ -10,6 +14,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity generator.domain.ScheNum
 */
 public interface ScheNumMapper extends BaseMapper<ScheNum> {
+
+    // 自定义查询医生号源列表
+    List<DoctorScheNumVO> getDoctorScheNumList(@Param("hospitalNo") String hospitalNo,
+                                               @Param("deptCode") String deptCode,
+                                               @Param("doctorCode") String doctorCode,
+                                               @Param("scheduleId") String scheduleId);
 
 }
 

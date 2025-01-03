@@ -28,4 +28,29 @@
         end_time,register_fee,surplus,
         create_time,update_time
     </sql>
+
+        <!-- 查询医生号源列表 -->
+        <select id="getDoctorScheNumList" resultType="com.boyi.hospital.model.vo.schenum.DoctorScheNumVO">
+            SELECT
+                hospital_no AS hospitalNo,
+                dept_code AS deptCode,
+                doctor_code AS doctorCode,
+                sche_date AS scheDate,
+                schedule_id AS scheduleId,
+                start_time AS startTime,
+                end_time  AS endTime,
+                sche_num_id AS scheNumId,
+                register_fee AS registerFee,
+                surplus AS surplus,
+                start_time AS startTime,
+                end_time AS endTime
+            FROM
+                t_sche_num_info
+            WHERE
+                  hospital_no = #{hospitalNo}
+              AND dept_code = #{deptCode}
+              AND doctor_code = #{doctorCode}
+              AND schedule_id = #{scheduleId}
+        </select>
+
 </mapper>
